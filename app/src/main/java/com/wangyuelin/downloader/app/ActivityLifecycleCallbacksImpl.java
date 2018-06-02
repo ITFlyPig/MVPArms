@@ -23,7 +23,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import me.jessyan.mvparms.demo.R;
+import com.wangyuelin.downloader.R;
+
 import timber.log.Timber;
 
 /**

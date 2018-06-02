@@ -33,7 +33,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import me.jessyan.mvparms.demo.R;
+
+import com.wangyuelin.downloader.R;
 import com.wangyuelin.downloader.di.component.DaggerUserComponent;
 import com.wangyuelin.downloader.di.module.UserModule;
 import com.wangyuelin.downloader.mvp.contract.UserContract;

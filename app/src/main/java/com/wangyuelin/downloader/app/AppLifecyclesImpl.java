@@ -24,9 +24,9 @@ import com.jess.arms.integration.cache.IntelligentCache;
 import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.wangyuelin.downloader.BuildConfig;
 
 import butterknife.ButterKnife;
-import me.jessyan.mvparms.demo.BuildConfig;
 import timber.log.Timber;
 
 /**

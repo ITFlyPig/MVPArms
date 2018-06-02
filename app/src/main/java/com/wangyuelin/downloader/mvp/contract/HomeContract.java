@@ -13,40 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wangyuelin.downloader.mvp.ui.adapter;
+package com.wangyuelin.downloader.mvp.contract;
 
-import android.view.View;
+import android.app.Activity;
 
-import com.jess.arms.base.BaseHolder;
-import com.jess.arms.base.DefaultAdapter;
+import com.jess.arms.mvp.IModel;
+import com.jess.arms.mvp.IView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.wangyuelin.downloader.mvp.model.entity.User;
 
 import java.util.List;
 
-import com.wangyuelin.downloader.R;
-import com.wangyuelin.downloader.mvp.model.entity.User;
-import com.wangyuelin.downloader.mvp.ui.holder.UserItemHolder;
+import io.reactivex.Observable;
 
 /**
  * ================================================
- * 展示 {@link DefaultAdapter} 的用法
- * <p>
- * Created by JessYan on 09/04/2016 12:57
+ * 展示 Contract 的用法
+ *
+ * @see <a href="https://github.com/JessYanCoding/MVPArms/wiki#2.4.1">Contract wiki 官方文档</a>
+ * Created by JessYan on 09/04/2016 10:47
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class UserAdapter extends DefaultAdapter<User> {
-    public UserAdapter(List<User> infos) {
-        super(infos);
+public interface HomeContract {
+    interface View extends IView {
+        void startLoadMore();
+        void endLoadMore();
+        Activity getActivity();
+        //申请权限
+        RxPermissions getRxPermissions();
     }
-
-    @Override
-    public BaseHolder<User> getHolder(View v, int viewType) {
-        return new UserItemHolder(v);
-    }
-
-    @Override
-    public int getLayoutId(int viewType) {
-        return R.layout.recycle_list;
+    interface Model extends IModel{
     }
 }

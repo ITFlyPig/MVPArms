@@ -32,7 +32,7 @@ import com.squareup.leakcanary.RefWatcher;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import me.jessyan.mvparms.demo.BuildConfig;
+import com.wangyuelin.downloader.BuildConfig;
 import com.wangyuelin.downloader.mvp.model.api.Api;
 import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;

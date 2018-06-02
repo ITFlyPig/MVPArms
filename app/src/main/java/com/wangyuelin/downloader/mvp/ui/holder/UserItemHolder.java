@@ -27,7 +27,8 @@ import com.jess.arms.utils.ArmsUtils;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
-import me.jessyan.mvparms.demo.R;
+
+import com.wangyuelin.downloader.R;
 import com.wangyuelin.downloader.mvp.model.entity.User;
 
 /**
