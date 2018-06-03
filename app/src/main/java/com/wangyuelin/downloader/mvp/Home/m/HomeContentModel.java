@@ -22,6 +22,7 @@ import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 import com.wangyuelin.downloader.app.utils.Menus;
+import com.wangyuelin.downloader.mvp.contract.HomeContentContract;
 import com.wangyuelin.downloader.mvp.contract.HomeContract;
 import com.wangyuelin.downloader.mvp.model.entity.LeftMeunItemBean;
 
@@ -34,11 +35,11 @@ import timber.log.Timber;
 
 
 @ActivityScope
-public class HomeModel extends BaseModel implements HomeContract.Model {
+public class HomeContentModel extends BaseModel implements HomeContentContract.Model {
 
 
     @Inject
-    public HomeModel(IRepositoryManager repositoryManager) {
+    public HomeContentModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
 
@@ -49,23 +50,6 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
         Timber.d("Release Resource");
     }
 
-    @Override
-    public List<LeftMeunItemBean> getMenus() {
-        Menus[] menus = Menus.values();
-        if (menus == null ) {
-            return null;
-        }
-        List<LeftMeunItemBean> meunList = new ArrayList<>();
-        for (Menus menu : menus) {
-            LeftMeunItemBean item = new LeftMeunItemBean();
-            item.setName(menu.getName());
-            item.setIcon(menu.getIcon());
-            item.setType(menu.getType());
-            meunList.add(item);
-
-        }
-        return meunList;
-    }
 
 
 }

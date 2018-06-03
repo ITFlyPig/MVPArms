@@ -20,47 +20,34 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.SupportActivity;
-import android.support.v7.widget.RecyclerView;
 
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.utils.PermissionUtil;
-import com.jess.arms.utils.RxLifecycleUtils;
 import com.wangyuelin.downloader.mvp.Home.adapter.LeftMenuAdapter;
+import com.wangyuelin.downloader.mvp.contract.HomeContentContract;
 import com.wangyuelin.downloader.mvp.contract.HomeContract;
-import com.wangyuelin.downloader.mvp.contract.UserContract;
 import com.wangyuelin.downloader.mvp.model.entity.LeftMeunItemBean;
-import com.wangyuelin.downloader.mvp.model.entity.User;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
-import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 
 @ActivityScope
-public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContract.View> {
+public class HomeContentPresenter extends BasePresenter<HomeContentContract.Model, HomeContentContract.View> {
     @Inject
     RxErrorHandler mErrorHandler;
     @Inject
     AppManager mAppManager;
     @Inject
     Application mApplication;
-    private int lastUserId = 1;
-    private boolean isFirst = true;
-    private int preEndIndex;
-
-    private LeftMenuAdapter mLeftMenuAdapter;
 
 
     @Inject
-    public HomePresenter(HomeContract.Model model, HomeContract.View rootView) {
+    public HomeContentPresenter(HomeContentContract.Model model, HomeContentContract.View rootView) {
         super(model, rootView);
     }
 
@@ -72,20 +59,6 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     void onCreate() {
 
     }
-
-
-    /**
-     * 初始化菜单
-     */
-    public void initMenuAdapter() {
-        List<LeftMeunItemBean> menus = mModel.getMenus();
-        mLeftMenuAdapter = new LeftMenuAdapter(menus);
-        mRootView.setMenuAdapter(mLeftMenuAdapter);
-
-    }
-
-
-
 
     @Override
     public void onDestroy() {
