@@ -1,5 +1,6 @@
 package com.wangyuelin.downloader.mvp.Home.adapter;
 
+import android.util.Log;
 import android.view.View;
 
 import com.jess.arms.base.BaseHolder;
@@ -19,6 +20,7 @@ public class LeftMenuAdapter extends DefaultAdapter<LeftMeunItemBean> {
 
     @Override
     public BaseHolder<LeftMeunItemBean> getHolder(View v, int viewType) {
+        Log.d("ll",  "创建Holder");
         return new ItemMenuHolder(v);
     }
 

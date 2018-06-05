@@ -125,12 +125,8 @@ public class XLTaskHelper {
             taskParam.setCreateMode(1);
             XLDownloadManager.getInstance().createEmuleTask(taskParam, getTaskId);
         } else if (url.startsWith("magnet:?")){
-            if (TextUtils.isEmpty(fileName)) {
-                XLDownloadManager.getInstance().getFileNameFromUrl(url, getFileName);
-                fileName = getFileName.getFileName();
-            }
             MagnetTaskParam magnetTaskParam = new MagnetTaskParam();
-            magnetTaskParam.setFileName(fileName);
+            magnetTaskParam.setFileName(getFileName.getFileName());
             magnetTaskParam.setFilePath(savePath);
             magnetTaskParam.setUrl(url);
             XLDownloadManager.getInstance().createBtMagnetTask(magnetTaskParam, getTaskId);

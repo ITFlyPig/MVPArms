@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:gravity="center_horizontal">
+    <TextView
+        android:id="@+id/tv_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        android:text="下载"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/split_line_color"/>
+    <TextView
+        android:id="@+id/tv_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        android:text="播放"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/split_line_color"/>
+    <TextView
+        android:id="@+id/tv_cancle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        android:text="取消"/>
+
+</LinearLayout>

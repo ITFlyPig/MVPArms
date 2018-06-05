@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <ImageView
+            android:id="@+id/iv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:layout_marginTop="10dp"
+            android:text="文件的 名称"
+            android:ellipsize="end"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/split_line_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_szie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500M"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_download_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在下载 400kb/s"/>
+            <Button
+                android:id="@+id/btn_play"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="播放"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -25,6 +25,7 @@ import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.wangyuelin.downloader.BuildConfig;
+import com.xunlei.downloadlib.XLTaskHelper;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -83,6 +84,9 @@ public class AppLifecyclesImpl implements AppLifecycles {
         //Message msg = new Message();
         //msg.what = 0;
         //AppManager.post(msg); like EventBus
+
+        //初始化迅雷下载
+        XLTaskHelper.init(application);
     }
 
     @Override

@@ -16,6 +16,7 @@
 package com.jess.arms.base;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
      */
     @Override
     public BaseHolder<T> onCreateViewHolder(ViewGroup parent, final int viewType) {
+        Log.d("ll", "onCreateViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(viewType), parent, false);
         mHolder = getHolder(view, viewType);
         mHolder.setOnItemClickListener(new BaseHolder.OnViewClickListener() {//设置Item点击事件
@@ -71,6 +73,7 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
      */
     @Override
     public void onBindViewHolder(BaseHolder<T> holder, int position) {
+        Log.d("ll", "onBindViewHolder");
         holder.setData(mInfos.get(position), position);
     }
 
@@ -82,6 +85,7 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
      */
     @Override
     public int getItemCount() {
+        Log.d("ll", "getSize:" + mInfos.size());
         return mInfos.size();
     }
 

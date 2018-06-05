@@ -17,6 +17,7 @@ package com.wangyuelin.downloader.di.component;
 
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.di.scope.FragmentScope;
 import com.wangyuelin.downloader.di.module.HomeContentModule;
 import com.wangyuelin.downloader.di.module.HomeModule;
 import com.wangyuelin.downloader.mvp.Home.v.HomeActivity;
@@ -24,8 +25,8 @@ import com.wangyuelin.downloader.mvp.Home.v.HomeFragment;
 
 import dagger.Component;
 
-@ActivityScope
+@FragmentScope
 @Component(modules = HomeContentModule.class, dependencies = AppComponent.class)
 public interface HomeContentComponent {
-    void inject(HomeFragment activity);
+    void inject(HomeFragment fragment);
 }

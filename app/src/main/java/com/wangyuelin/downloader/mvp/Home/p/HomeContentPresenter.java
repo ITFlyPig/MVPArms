@@ -18,16 +18,27 @@ package com.wangyuelin.downloader.mvp.Home.p;
 import android.app.Application;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.SupportActivity;
 
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.di.scope.FragmentScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
+import com.jess.arms.utils.PermissionUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.wangyuelin.downloader.app.utils.Constant;
+import com.wangyuelin.downloader.app.utils.FileUtil;
+import com.wangyuelin.downloader.mvp.Home.adapter.ContentTabFragmentsAdapter;
 import com.wangyuelin.downloader.mvp.Home.adapter.LeftMenuAdapter;
 import com.wangyuelin.downloader.mvp.contract.HomeContentContract;
 import com.wangyuelin.downloader.mvp.contract.HomeContract;
 import com.wangyuelin.downloader.mvp.model.entity.LeftMeunItemBean;
+import com.xunlei.downloadlib.XLTaskHelper;
+import com.xunlei.downloadlib.parameter.XLTaskInfo;
 
 import java.util.List;
 
@@ -36,7 +47,7 @@ import javax.inject.Inject;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 
 
-@ActivityScope
+@FragmentScope
 public class HomeContentPresenter extends BasePresenter<HomeContentContract.Model, HomeContentContract.View> {
     @Inject
     RxErrorHandler mErrorHandler;
@@ -44,6 +55,10 @@ public class HomeContentPresenter extends BasePresenter<HomeContentContract.Mode
     AppManager mAppManager;
     @Inject
     Application mApplication;
+
+
+    private ContentTabFragmentsAdapter mContentAdapter;
+
 
 
     @Inject
@@ -60,6 +75,52 @@ public class HomeContentPresenter extends BasePresenter<HomeContentContract.Mode
 
     }
 
+
+    /**
+     * 初始化
+     */
+    public void initPagerAdapter(FragmentManager fm) {
+        List<String> titles = mModel.getTabsName();
+        mContentAdapter = new ContentTabFragmentsAdapter(fm, titles);
+        mRootView.setAdapter(mContentAdapter);
+
+    }
+
+
+    public void addDownloadTask(String url) {
+        //请求外部存储权限用于适配android6.0的权限管理机制
+        PermissionUtil.externalStorage(new PermissionUtil.RequestPermission() {
+            @Override
+            public void onRequestPermissionSuccess() {
+                //request permission success, do something.
+                //开始下载
+                long taskId = 0;
+                try {
+                    FileUtil.checkDir(Constant.SAVE_PATH);
+                    String fileName = XLTaskHelper.instance(mApplication).getFileName(url);
+                    taskId = XLTaskHelper.instance(mApplication).addThunderTask(url,Constant.SAVE_PATH, fileName);
+                    XLTaskInfo taskInfo = XLTaskHelper.instance(mApplication).getTaskInfo(taskId);
+                    mRootView.addTask(taskInfo, url);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onRequestPermissionFailure(List<String> permissions) {
+                mRootView.showMessage("Request permissions failure");
+            }
+
+            @Override
+            public void onRequestPermissionFailureWithAskNeverAgain(List<String> permissions) {
+                mRootView.showMessage("Need to go to the settings");
+            }
+        }, mRootView.getRxPermissions(), mErrorHandler);
+
+    }
+
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -67,4 +128,6 @@ public class HomeContentPresenter extends BasePresenter<HomeContentContract.Mode
         this.mAppManager = null;
         this.mApplication = null;
     }
+
+
 }

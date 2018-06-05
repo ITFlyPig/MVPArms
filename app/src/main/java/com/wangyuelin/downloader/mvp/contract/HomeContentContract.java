@@ -20,8 +20,10 @@ import android.app.Activity;
 import com.jess.arms.mvp.IModel;
 import com.jess.arms.mvp.IView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.wangyuelin.downloader.mvp.Home.adapter.ContentTabFragmentsAdapter;
 import com.wangyuelin.downloader.mvp.Home.adapter.LeftMenuAdapter;
 import com.wangyuelin.downloader.mvp.model.entity.LeftMeunItemBean;
+import com.xunlei.downloadlib.parameter.XLTaskInfo;
 
 import java.util.List;
 
@@ -40,8 +42,14 @@ public interface HomeContentContract {
         Activity getActivity();
         //申请权限
         RxPermissions getRxPermissions();
+
+        void addTask(XLTaskInfo info, String url);
+
+        void setAdapter(ContentTabFragmentsAdapter adapter);
+
     }
     interface Model extends IModel{
         //获得菜单数据
+        List<String> getTabsName();
     }
 }

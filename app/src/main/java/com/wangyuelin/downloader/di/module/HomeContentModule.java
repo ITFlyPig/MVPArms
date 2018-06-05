@@ -16,6 +16,7 @@
 package com.wangyuelin.downloader.di.module;
 
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.di.scope.FragmentScope;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wangyuelin.downloader.mvp.Home.m.HomeContentModel;
 import com.wangyuelin.downloader.mvp.Home.m.HomeModel;
@@ -39,19 +40,19 @@ public class HomeContentModule {
         this.view = view;
     }
 
-    @ActivityScope
+    @FragmentScope
     @Provides
     HomeContentContract.View provideHomeView() {
         return this.view;
     }
 
-    @ActivityScope
+    @FragmentScope
     @Provides
     HomeContentContract.Model provideHomeModel(HomeContentModel model) {
         return model;
     }
 
-    @ActivityScope
+    @FragmentScope
     @Provides
     RxPermissions provideRxPermissions() {
         return new RxPermissions(view.getActivity());

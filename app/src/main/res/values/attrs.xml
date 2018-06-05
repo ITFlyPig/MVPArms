@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <declare-styleable name="DotsGrow">
+        <attr name="dotSize" format="dimension"/>
+        <attr name="dotColor" format="color"/>
+        <attr name="dotPadding" format="dimension"/>
+        <attr name="dotNum" format="integer"/>
+        <attr name="durtation" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="DrawertoggleIconView">
+        <attr name="line_color" format="color"/>
+        <attr name="line_h" format="dimension"/>
+        <attr name="line_w" format="dimension"/>
+        <attr name="line_padding" format="dimension"/>
+    </declare-styleable>
+
+</resources>
