@@ -17,10 +17,13 @@ package com.jess.arms.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.jess.arms.base.delegate.AppDelegate;
 import com.jess.arms.base.delegate.AppLifecycles;
+import com.jess.arms.base.delegate.DelegateApplicationPackageManager;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
@@ -81,6 +84,21 @@ public class BaseApplication extends Application implements App {
         Preconditions.checkNotNull(mAppDelegate, "%s cannot be null", AppDelegate.class.getName());
         Preconditions.checkState(mAppDelegate instanceof App, "%s must be implements %s", AppDelegate.class.getName(), App.class.getName());
         return ((App) mAppDelegate).getAppComponent();
+    }
+
+    @Override
+    public String getPackageName() {
+        if(Log.getStackTraceString(new Throwable()).contains("com.xunlei.downloadlib")) {
+            return "com.xunlei.downloadprovider";
+        }
+        return super.getPackageName();
+    }
+    @Override
+    public PackageManager getPackageManager() {
+        if(Log.getStackTraceString(new Throwable()).contains("com.xunlei.downloadlib")) {
+            return new DelegateApplicationPackageManager(super.getPackageManager());
+        }
+        return super.getPackageManager();
     }
 
 }

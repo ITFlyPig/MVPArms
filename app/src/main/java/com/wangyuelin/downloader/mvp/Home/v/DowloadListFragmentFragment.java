@@ -6,6 +6,8 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +19,8 @@ import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.wangyuelin.downloader.R;
+import com.wangyuelin.downloader.app.event.PauseEvent;
+import com.wangyuelin.downloader.app.event.StartDownloadEvent;
 import com.wangyuelin.downloader.app.event.TaskEvent;
 import com.wangyuelin.downloader.di.component.DaggerDowloadListFragmentComponent;
 import com.wangyuelin.downloader.di.module.DowloadListFragmentModule;
@@ -149,25 +153,40 @@ public class DowloadListFragmentFragment extends BaseFragment<DowloadListFragmen
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         ArmsUtils.configRecyclerView(mRecyclerView, linearLayoutManager);
+        DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.drawable_dvider));
+        mRecyclerView.addItemDecoration(divider);
     }
-
-
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder != null)
+            unbinder.unbind();
     }
 
     @Override
     public void setAdapter(ListDownloadAdapter adapter) {
         mRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        Log.d("xk", "list size：" + adapter.getInfos().size());
     }
 
     @Subscriber
     public void addTask(TaskEvent taskEvent) {
         mPresenter.addTask(taskEvent.getTaskInfo(), taskEvent.getUrl());
+    }
+
+    @Subscriber
+    public void pauseDownload(PauseEvent pauseEvent) {
+        mPresenter.pause(pauseEvent.getTaskId());
+
+    }
+
+    @Subscriber
+    public void startDownload(StartDownloadEvent startDownloadEvent) {
+        mPresenter.startDownload(startDownloadEvent.getTaskId(), startDownloadEvent.getUrl());
     }
 
 

@@ -10,6 +10,7 @@ public class DownloadTaskBean extends BaseDownloadBean{
     private String speed;
     private int status;//1 正在下载  2：下载完成  3：下载失败
     private String downLoadSize;
+    private float progress;//下载的进度 0~1
 
 
     public long getTaskId() {
@@ -29,7 +30,7 @@ public class DownloadTaskBean extends BaseDownloadBean{
     }
 
     public String getDownloadUrl() {
-        return downloadUrl;
+        return downloadUrl == null ? "" : downloadUrl;
     }
 
     public void setDownloadUrl(String downloadUrl) {
@@ -82,5 +83,13 @@ public class DownloadTaskBean extends BaseDownloadBean{
 
     public void setDownLoadSize(String downLoadSize) {
         this.downLoadSize = downLoadSize;
+    }
+
+    public float getProgress() {
+        return progress;
+    }
+
+    public void setProgress(float progress) {
+        this.progress = progress;
     }
 }

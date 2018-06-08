@@ -144,7 +144,8 @@ public class HomeFragment extends BaseFragment<HomeContentPresenter> implements 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder != null)
+            unbinder.unbind();
     }
 
     private void initToolBar() {
@@ -158,7 +159,6 @@ public class HomeFragment extends BaseFragment<HomeContentPresenter> implements 
         tablayout.addTab(tablayout.newTab().setText("已下载"));
         tablayout.setupWithViewPager(viewpager);
     }
-
 
 
     @Override
@@ -182,7 +182,7 @@ public class HomeFragment extends BaseFragment<HomeContentPresenter> implements 
                             if (mInputDialog != null && mInputDialog.isShowing()) {
                                 return;
                             }
-                            InputPopUtil.showChoosePop(getActivity(),  HomeFragment.this);
+                            InputPopUtil.showChoosePop(getActivity(), HomeFragment.this);
 
                         }
 

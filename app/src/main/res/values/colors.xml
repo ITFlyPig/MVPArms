@@ -7,4 +7,5 @@
     <color name="text_color">#1C1C1C</color>
     <color name="second_text_color">#666666</color>
     <color name="split_line_color">#BFBFBF</color>
+    <color name="dvider_color">#e1e0e0</color>
 </resources>

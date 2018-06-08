@@ -18,4 +18,9 @@
         <attr name="line_padding" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="ProgressLineView">
+        <attr name="progress_line_color" format="color"/>
+        <attr name="progress_line_h" format="dimension"/>
+    </declare-styleable>
+
 </resources>
